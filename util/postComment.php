@@ -9,3 +9,4 @@ $comment = mysqli_real_escape_string($conn, $_POST['comment']);
 
 $sql = "INSERT INTO commentTable (name, comment, noodleID) VALUES ('$name', '$comment', '$id')";
 mysqli_query($conn, $sql);
+mysqli_close($conn);

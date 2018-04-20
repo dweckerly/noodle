@@ -1,13 +1,9 @@
 <?php
 include_once('inc/db.php');
-/*
-will use this once I populate the DB
 $id = date('z') + 1;
 if($id > 101) {
     $id = $id - 101;
 }
-*/
-$id = 1;
 $sql = "SELECT * FROM noodleTable WHERE noodleID = '$id'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
@@ -35,7 +31,7 @@ if($row['rateCount'] != 0) {
         <p id="date"><?php echo date('m/d/Y');?></p>
     </div>
     <div id="noodle-container" class="container" align="center">
-        <img id="noodle" class="img-fluid" src="<?php echo $row['img'];?>">
+        <img id="noodle" class="img-fluid" src="img/<?php echo $row['noodleID'];?>.jpg">
     </div>
     <div align="center">
         <p id="saying">Here's your noodle. <?php 
@@ -59,7 +55,7 @@ if($row['rateCount'] != 0) {
         <h3>Thanks!</h3>
     </div>
     <div id="leav-a-comment-container" align="center">
-        <div id="leave-a-comment" class="col-sm-4">
+        <div id="leave-a-comment" class="col-sm-4 col-md-3">
             <h4>Leave a comment.</h4>
             <div class="form-group">
                 <input id="comment-name" type="text" class="form-control" placeholder="Name" value="">
@@ -77,7 +73,7 @@ $sql = "SELECT * FROM commentTable WHERE noodleID = '$id'";
 $result = mysqli_query($conn, $sql);
 if($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {?>
-        <div class="comment col-sm-4">
+        <div class="comment col-sm-4 col-md-3">
             <h5 class="float-left"><?php echo $row['name'];?> said:</h5>
             <br /><br />
             <p><?php echo $row['comment'];?></p>
@@ -85,7 +81,7 @@ if($result->num_rows > 0) {
 <?php
     }
 } else { ?>
-    <div id="no-comment" class="comment col-sm-4">
+    <div id="no-comment" class="comment col-sm-4 col-md-3">
         <h4 style="margin-bottom: 1em;">No comments... :(</h4>
     </div>
 <?php
