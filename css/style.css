@@ -13,8 +13,23 @@
     font-size: 60px;
 }
 
-#saying, #rate-box, #rated {
+#saying, #rate-box, #rated, #leave-a-comment, .comment {
     font-family: 'Gamja Flower', cursive;
+}
+
+#leave-a-comment, .comment {
+    border-radius: 10px;
+    border: gainsboro 1px solid;
+    background-color: gainsboro;
+    margin-top: 2em;
+}
+
+.comment {
+    padding-top: 1em;
+}
+
+#leave-a-comment {
+    padding-bottom: 1em;
 }
 
 .fa-star, .fa-star-o {
