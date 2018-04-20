@@ -44,6 +44,10 @@
     display: none;
 }
 
+#rating-star {
+    font-size: 12px;
+}
+
 img:hover {
     animation: shake 0.5s; 
     animation-iteration-count: infinite; 

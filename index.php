@@ -11,13 +11,19 @@ $id = 1;
 $sql = "SELECT * FROM noodleTable WHERE noodleID = '$id'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
+if($row['rateCount'] != 0) {
+    $rating = $row['rateTotal'] / $row['rateCount']; 
+    $rating = round($rating, 1);
+} else {
+    $rating = 0;
+}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>A Noodle A Day</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -32,7 +38,14 @@ $row = mysqli_fetch_assoc($result);
         <img id="noodle" class="img-fluid" src="<?php echo $row['img'];?>">
     </div>
     <div align="center">
-        <p id="saying">Here's your noodle.</p>
+        <p id="saying">Here's your noodle. <?php 
+        if($rating != 0) {
+            echo $rating;?> <i id="rating-star" class="fa fa-star"></i>s</p>
+        <?php
+        } else {?> Not yet rated... :(</p>
+        <?php
+        }
+        ?>
     </div>
     <div id="rate-box" align="center">
             <h3>Rate this noodle.</h3>
@@ -49,15 +62,15 @@ $row = mysqli_fetch_assoc($result);
         <div id="leave-a-comment" class="col-sm-4">
             <h4>Leave a comment.</h4>
             <div class="form-group">
-                <input id="comment-name" type="text" class="form-control" placeholder="Name">
+                <input id="comment-name" type="text" class="form-control" placeholder="Name" value="">
             </div>
             <div class="form-group">
-                <textarea id="comment-text" class="form-control" rows="3" placeholder="Wow, that's some nice noodles!"></textarea>
+                <textarea id="comment-text" class="form-control" rows="3" placeholder="Wow, that's some nice noodles!" value=""></textarea>
             </div>
             <button id="comment-btn" class="btn btn-primary">Submit</button>
         </div>
     </div>
-    <div align="center">
+    <div id="comment-container" align="center">
 <?php
 
 $sql = "SELECT * FROM commentTable WHERE noodleID = '$id'";

@@ -31,3 +31,25 @@ function rateNoodle(rating) {
 
     // will add ajax here to change noodle's rating
 }
+
+$('#comment-btn').click(function() {
+    var name = $('#comment-name').val()
+    var text = $('#comment-text').val()
+    if(name == '' || text == '') {
+        alert('Both fields must be filled.');
+    } else {
+        $.post('util/postComment.php',
+        {
+            name: name,
+            comment: text
+        },
+        function() {
+            $('comment-container').fadeOut('slow', function(){
+                $('no-comment').fadeOut('fast', function() {
+                    $('comment-container').append("<div class='comment col-sm-4'><h5 class='float-left'>" + name + " said:</h5><br /><br /><p>" + text + "</p></div>");
+                    $('comment-container').fadeIn('slow', function() {});
+                });
+            });
+        });
+    }
+});
