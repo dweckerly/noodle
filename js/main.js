@@ -33,9 +33,11 @@ function rateNoodle(rating) {
 }
 
 $('#comment-btn').click(function() {
+    console.log('clicked');
     var name = $('#comment-name').val()
     var text = $('#comment-text').val()
     if(name == '' || text == '') {
+        console.log('empty');
         alert('Both fields must be filled.');
     } else {
         $.post('util/postComment.php',
@@ -44,10 +46,10 @@ $('#comment-btn').click(function() {
             comment: text
         },
         function() {
-            $('comment-container').fadeOut('slow', function(){
-                $('no-comment').fadeOut('fast', function() {
-                    $('comment-container').append("<div class='comment col-sm-4'><h5 class='float-left'>" + name + " said:</h5><br /><br /><p>" + text + "</p></div>");
-                    $('comment-container').fadeIn('slow', function() {});
+            $('#comment-container').fadeOut('slow', function(){
+                $('#no-comment').fadeOut('fast', function() {
+                    $('#comment-container').append("<div class='comment col-sm-4'><h5 class='float-left'>" + name + " said:</h5><br /><br /><p>" + text + "</p></div>");
+                    $('#comment-container').fadeIn('slow', function() {});
                 });
             });
         });
