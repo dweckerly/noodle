@@ -57,10 +57,11 @@ $('#comment-btn').click(function() {
             },
             function() {
                 $('#comment-container').fadeOut('slow', function() {
-                    $('#no-comment').fadeOut('fast', function() {
-                        $('#comment-container').append("<div class='comment col-sm-4'><h5 class='float-left'>" + name + " said:</h5><br /><br /><p>" + text + "</p></div>");
-                        $('#comment-container').fadeIn('slow', function() {});
-                    });
+                    if($('#no-comment').length) {
+                        $('#no-comment').fadeOut('fast', function() {});
+                    }
+                    $('#comment-container').append("<div class='comment col-sm-4 col-md-3'><h5 class='float-left'>" + name + " said:</h5><br /><br /><p>" + text + "</p></div>");
+                    $('#comment-container').fadeIn('slow', function() {});
                 });
             }
         );
