@@ -44,13 +44,12 @@ function rateNoodle(rating) {
 }
 
 $('#comment-btn').click(function() {
-    console.log('clicked');
     var name = $('#comment-name').val()
     var text = $('#comment-text').val()
     if (name == '' || text == '') {
-        console.log('empty');
         alert('Both fields must be filled.');
     } else {
+        $('#comment-text').val() = ''
         $.post('util/postComment.php', {
                 name: name,
                 comment: text

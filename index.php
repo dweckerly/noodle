@@ -1,10 +1,10 @@
 <?php
 include_once('inc/db.php');
 $id = date('z') + 1;
-if($id > 101) {
-    $id = $id - 101;
-}
-$sql = "SELECT * FROM noodleTable WHERE noodleID = '$id'";
+$noodles = mysqli_query($conn, "SELECT * FROM noodleTable");
+$count = mysqli_num_rows($noodles);
+$nid = ($id % $count) + 1;
+$sql = "SELECT * FROM noodleTable WHERE noodleID = '$nid'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 if($row['rateCount'] != 0) {
@@ -25,7 +25,8 @@ if($row['rateCount'] != 0) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 </head>
-<body>
+<body><?php
+?>
     <div id="title-div" class="noodle-font" align="center">
         <h1 id="title">a noodle a day</h1>
         <p id="date"><?php echo date('m/d/Y');?></p>

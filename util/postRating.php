@@ -1,12 +1,12 @@
 <?php
 include_once('../inc/db.php');
 $id = date('z') + 1;
-if($id > 101) {
-    $id = $id - 101;
-}
+$noodles = mysqli_query($conn, "SELECT * FROM noodleTable");
+$count = mysqli_num_rows($noodles);
+$nid = ($id % $count) + 1;
 $rate = $_POST['rate'];
 
-$sql = "SELECT * FROM noodleTable WHERE noodleID = '$id'";
+$sql = "SELECT * FROM noodleTable WHERE noodleID = '$nid'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $count = $row['rateCount'] + 1;
