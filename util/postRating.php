@@ -12,7 +12,7 @@ $row = mysqli_fetch_assoc($result);
 $count = $row['rateCount'] + 1;
 $rating = $row['rateTotal'] + $rate;
 
-$sql = "UPDATE noodleTable SET rateTotal='$rating', rateCount='$count' WHERE noodleID = '$id'";
+$sql = "UPDATE noodleTable SET rateTotal='$rating', rateCount='$count' WHERE noodleID = '$nid'";
 mysqli_query($conn, $sql);
 
 mysqli_close($conn);
