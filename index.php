@@ -70,7 +70,7 @@ if($row['rateCount'] != 0) {
     <div id="comment-container" align="center">
 <?php
 
-$sql = "SELECT * FROM commentTable WHERE noodleID = '$id'";
+$sql = "SELECT * FROM commentTable WHERE noodleID = '$nid'";
 $result = mysqli_query($conn, $sql);
 if($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {?>

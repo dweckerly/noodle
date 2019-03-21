@@ -49,14 +49,14 @@ $('#comment-btn').click(function() {
     if (name == '' || text == '') {
         alert('Both fields must be filled.');
     } else {
-        $('#comment-text').val() = ''
+        $('#comment-text').val('');
         $.post('util/postComment.php', {
                 name: name,
                 comment: text
             },
             function() {
                 $('#comment-container').fadeOut('slow', function() {
-                    if($('#no-comment').length) {
+                    if ($('#no-comment').length) {
                         $('#no-comment').fadeOut('fast', function() {});
                     }
                     $('#comment-container').append("<div class='comment col-sm-4 col-md-3'><h5 class='float-left'>" + name + " said:</h5><br /><br /><p>" + text + "</p></div>");
